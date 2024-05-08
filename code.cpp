@@ -4,7 +4,7 @@
 #include<string.h>
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 
-int turn;
+//int turn;
 void doort(int v);
 GLfloat xx = 0.0, zz = 0.0, xx1 = 1;
 float lx = 0.0f, lz = -1.0f, angle = 0.0;
@@ -168,7 +168,7 @@ void redwall()
 	glVertex3f(-0.98, 0.0, -0.2);
 	glVertex3f(-0.98, 0.5, -0.2);
 	glEnd();
-	//--------------grey mid--------------
+	
 
 	glColor3f(0.53, 0.12, 0.12);
 	//glColor3f(0.69, 0.58, 0.56);
@@ -298,7 +298,7 @@ void redwall()
 	glutSolidCone(0.03, 0.07, 100, 100);
 	glPopMatrix();
 }
-void greywall()
+void wall2()
 {
 	glColor3f(0.91, 0.91, 0.89);
 	glPushMatrix();
@@ -415,7 +415,6 @@ void sofa()
 	glPopMatrix();
 
 }
-
 void wardrobe()
 {
 	//--------------wall--------
@@ -652,7 +651,7 @@ void room1()
 	glutSolidCube(0.1);
 	glPopMatrix();
 	redwall();
-	greywall();
+	wall2();
 	box();
 	wardrobe();
 	sofa();
@@ -669,7 +668,6 @@ void text()
 		output(-0.999, -0.500, "Press 'O' to open the door");
 		glFlush();
 
-
 	}
 }
 void mtv()
@@ -680,8 +678,6 @@ void mtv()
 	glScalef(0.1, 4, 7);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
-	//shadow
 
 	glColor3f(0.0, 0.01, 0.0);
 	glPushMatrix();
@@ -1108,7 +1104,6 @@ void kbox()
 	glScalef(5, 2.5, 1.6);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
 	//oven
 
 	glColor3f(0.58, 0.58, 0.58);
@@ -1175,7 +1170,6 @@ void kbox()
 	glScalef(2, 2.1, 0.1);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
 	//-----------side
 
 	glColor3f(0.22, 0.22, 0.22);
@@ -1192,7 +1186,6 @@ void kbox()
 	glutSolidCube(0.1);
 	glPopMatrix();
 
-
 	//black
 
 	glColor3f(0.05, 0.05, 0.05);
@@ -1208,8 +1201,6 @@ void kbox()
 	glScalef(1.75, 0.1, 6);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
-
 
 	//------design---------
 
@@ -1256,8 +1247,7 @@ void kbox()
 	glScalef(0.01, 2.5, 0.05);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
-	//handel
+	//handle
 
 	glColor3f(0.56, 0.56, 0.52);
 	glPushMatrix();
@@ -1323,8 +1313,7 @@ void kbox()
 	glScalef(0.1, 4, 2.5);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
-	//----white tabel boxes
+	//----white table boxes
 
 	glColor3f(0.1, 0.1, 0.1);
 	glPushMatrix();
@@ -1397,7 +1386,6 @@ void kbox()
 	glScalef(0.05, 0.15, 0.55);
 	glutSolidCube(0.1);
 	glPopMatrix();
-
 
 	glColor3f(0.56, 0.56, 0.52);
 	glPushMatrix();
@@ -1503,7 +1491,6 @@ void kitchen()
 	glVertex3f(-3, 0.5, 3);
 	glEnd();
 
-
 	glColor3f(0.85, 0.8, 0.85);
 	glBegin(GL_POLYGON);
 	glVertex3f(-1, 0.5, 3);
@@ -1573,7 +1560,6 @@ void kitchen()
 	kchair();
 	glPopMatrix();
 }
-
 void maindoor()
 {
 	//door
@@ -1594,7 +1580,6 @@ void maindoor()
 	glEnd();
 
 	//border
-
 	glColor3f(0.23, 0.20, 0.23);
 	glBegin(GL_POLYGON);
 	glVertex3f(-0.401, 0.3, 3.01);
@@ -1637,7 +1622,6 @@ void maindoor()
 		glVertex3f(-0.45, 0.1, 3.01);
 		glEnd();
 	}
-
 }
 void outercover()
 {
@@ -1717,8 +1701,10 @@ void specialKey(int key, int x, int y) {
 		lz = -cos(angle);
 		break;
 	case GLUT_KEY_UP:
+
 		viewer[0] += lx * fraction;
 		viewer[2] += lz * fraction;
+
 		break;
 	case GLUT_KEY_DOWN:
 		viewer[0] -= lx * fraction;
@@ -1741,10 +1727,14 @@ void changeSize(int w, int h)
 	if (h == 0)
 		h = 1;
 	float ratio = w * 1.0 / h;
+
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
+
 	glLoadIdentity();
+
 	gluPerspective(40.0f, ratio, 0.1f, 10.0f);
+
 	glMatrixMode(GL_MODELVIEW);
 	glutPostRedisplay();
 }
